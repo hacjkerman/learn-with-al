@@ -3,6 +3,7 @@ import cors from "cors";
 import "dotenv/config";
 import bodyParser from "body-parser";
 import chat from "./src/chat.js";
+import generateQuestion from "./src/generateQuestion.js";
 
 const app = express();
 
@@ -15,10 +16,10 @@ app.get("/", (req, res) => {
   res.json({ message: "Sup" });
 });
 
-app.post("/message", async (req, res) => {
-  const message = req.body;
-  const chatMessage = await chat(message.message);
-  res.json({ message: chatMessage });
+app.post("/generate", async (req, res) => {
+  const topic = req.body;
+  const chatMessage = await chat(topic.topic);
+  res.json(chatMessage);
 });
 
 app.listen(PORT, () => {

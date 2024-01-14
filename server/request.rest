@@ -1,6 +1,6 @@
-POST http://localhost:8080/message 
+POST http://localhost:8080/generate 
 Content-Type: application/json
 
 {
-    "message": "hello chatgpt"
+    "topic": "psychology"
 }
