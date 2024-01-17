@@ -1,10 +1,8 @@
-import OpenAI from "openai";
-import "dotenv/config";
 import getPrevious from "./getPrevious.js";
 import getTopics from "./getTopics.js";
+import gptConnect from "./gptConnect.js";
 
-const key = process.env.API_KEY;
-const openai = new OpenAI({ apiKey: key });
+const openai = gptConnect();
 
 export default async function chat() {
   const topics = await getTopics();
@@ -30,5 +28,6 @@ export default async function chat() {
       return question.choices[0].message.content;
     })
   );
+  // STORE INTO DATABASE HERE
   return questions;
 }
