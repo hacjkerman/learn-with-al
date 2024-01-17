@@ -13,13 +13,14 @@ services:
     restart: always
     ports:
       - 8080:8080
-  # chat:
-  #   build: ./chatServer
-  #   ports:
-  #     - 4000:4000
-  #   env_file:
-  #     - ./chatServer/.env
-  #   depends_on:
-  #     - db
-  #   links:
-  #     - "db"
+  chat:
+    build: ./chatServer
+    restart: always
+    ports:
+      - 4000:4000
+    env_file:
+      - ./chatServer/.env
+    depends_on:
+      - db
+    links:
+      - "db"
