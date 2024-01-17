@@ -9,7 +9,9 @@ const client = new Client({
   database: "postgres",
 });
 
-client.connect();
+export default function getDB() {
+  return client.connect();
+}
 
 client.query(`Select * from users`, (res, error) => {
   if (error) {

@@ -4,8 +4,8 @@ import "dotenv/config";
 import bodyParser from "body-parser";
 import chat from "./src/chat.js";
 import generateQuestion from "./src/generateQuestion.js";
-import cron from "cron";
 import getSubTopics from "./src/getSubTopics.js";
+import getDB from "./src/databasepg.js";
 
 const app = express();
 
@@ -27,6 +27,18 @@ app.post("/subTopics", async (req, res) => {
   const topic = req.body;
   const chatMessage = await getSubTopics(topic.topic);
   res.json(chatMessage);
+});
+
+app.post("/generateQuestions", async (req, res) => {
+  const topic = req.body;
+  const chatMessage = await generateQuestion(topic.topic);
+  res.json(chatMessage);
+});
+
+app.get("/db", async (req, res) => {
+  console.log("hello");
+  const db = await getDB();
+  res.json(db);
 });
 
 app.listen(PORT, () => {
