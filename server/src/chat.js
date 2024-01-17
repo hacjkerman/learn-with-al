@@ -1,28 +1,34 @@
 import OpenAI from "openai";
 import "dotenv/config";
 import getPrevious from "./getPrevious.js";
+import getTopics from "./getTopics.js";
 
 const key = process.env.API_KEY;
 const openai = new OpenAI({ apiKey: key });
 
-export default async function chat(topic) {
-  const previousQuestions = await getPrevious(topic);
-  const completion = await openai.chat.completions.create({
-    messages: [
-      {
-        role: "system",
-        content:
-          "You are the world's most knowledgable individual on the topic: " +
-          topic +
-          ". Excluding these questions: " +
-          previousQuestions +
-          ", give me a question and answer about " +
-          topic +
-          "in JSON notation.",
-      },
-    ],
-    model: "gpt-3.5-turbo",
-  });
-
-  return completion.choices[0].message.content;
+export default async function chat() {
+  const topics = await getTopics();
+  const questions = await Promise.all(
+    topics.map(async (topic) => {
+      const prevQuestions = await getPrevious(topic);
+      const question = await openai.chat.completions.create({
+        messages: [
+          {
+            role: "system",
+            content:
+              "You are the world's most knowledgable individual on the topic: " +
+              topic +
+              ". Excluding these questions: " +
+              prevQuestions +
+              ", give me a question and answer about " +
+              topic +
+              " to help students in this topic learn more and understand concepts better. Please return the response in JSON notation.",
+          },
+        ],
+        model: "gpt-3.5-turbo",
+      });
+      return question.choices[0].message.content;
+    })
+  );
+  return questions;
 }
