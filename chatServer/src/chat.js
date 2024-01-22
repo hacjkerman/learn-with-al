@@ -1,5 +1,5 @@
-import getPrevious from "./getPrevious.js";
-import getTopics from "./getTopics.js";
+import getPrevious from "./questions/getPrevious.js";
+import getTopics from "./topics/getTopics.js";
 import gptConnect from "./gptConnect.js";
 
 const openai = gptConnect();

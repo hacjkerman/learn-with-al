@@ -1,5 +1,5 @@
 import getPrevSubTopics from "./getPrevSubTopics.js";
-import gptConnect from "./gptConnect.js";
+import gptConnect from "../gptConnect.js";
 
 const openai = gptConnect();
 

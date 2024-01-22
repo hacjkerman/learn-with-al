@@ -3,9 +3,9 @@ import cors from "cors";
 import "dotenv/config";
 import bodyParser from "body-parser";
 import chat from "./src/chat.js";
-import generateQuestion from "./src/generateQuestion.js";
-import getSubTopics from "./src/getSubTopics.js";
-import getDB from "./src/databasepg.js";
+import generateQuestion from "./src/questions/generateQuestion.js";
+import getSubTopics from "./src/subtopics/getSubTopics.js";
+import storeInDB from "./src/database/databasepg.js";
 
 const app = express();
 
@@ -26,18 +26,21 @@ app.post("/generate", async (req, res) => {
 app.post("/subTopics", async (req, res) => {
   const topic = req.body;
   const chatMessage = await getSubTopics(topic.topic);
-  res.json(chatMessage);
+  const parsedObj = JSON.parse(chatMessage);
+  console.log(parsedObj.subtopics);
+  res.json(parsedObj.subtopics);
 });
 
 app.post("/generateQuestions", async (req, res) => {
   const topic = req.body;
   const chatMessage = await generateQuestion(topic.topic);
-  res.json(chatMessage);
+  const parsedObj = JSON.parse(chatMessage);
+  res.json(parsedObj.beginner);
 });
 
 app.get("/db", async (req, res) => {
   console.log("hello");
-  const db = await getDB();
+  const db = await storeInDB();
   res.json(db);
 });
 

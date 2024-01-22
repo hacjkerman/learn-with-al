@@ -11,6 +11,7 @@ export default async function getTopics() {
     // "Health",
     // // SALES SHOULD BE A SITUATION TOPIC
     // "Sales",
+    // "Marketing",
   ];
   return topics;
 }
