@@ -26,21 +26,19 @@ app.post("/generate", async (req, res) => {
 app.post("/subTopics", async (req, res) => {
   const topic = req.body;
   const chatMessage = await getSubTopics(topic.topic);
-  const parsedObj = JSON.parse(chatMessage);
-  console.log(parsedObj.subtopics);
-  res.json(parsedObj.subtopics);
+  res.json(chatMessage.subtopics);
 });
 
 app.post("/generateQuestions", async (req, res) => {
   const topic = req.body;
   const chatMessage = await generateQuestion(topic.topic);
-  const parsedObj = JSON.parse(chatMessage);
-  res.json(parsedObj.beginner);
+  console.log(chatMessage);
+  res.json(chatMessage);
 });
 
 app.get("/db", async (req, res) => {
   console.log("hello");
-  const db = await storeInDB();
+  const db = await storeInDB("psychology", ["forensic psychology"]);
   res.json(db);
 });
 

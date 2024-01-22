@@ -1,4 +1,4 @@
-import getPrevious from "./questions/getPrevious.js";
+import getPrevious from "./questions/getPreviousQuestions.js";
 import getTopics from "./topics/getTopics.js";
 import gptConnect from "./gptConnect.js";
 

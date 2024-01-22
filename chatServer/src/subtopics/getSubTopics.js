@@ -22,6 +22,6 @@ export default async function getSubTopics(topic) {
     model: "gpt-3.5-turbo",
   });
   // STORE INTO DATABASE HERE
-  console.log(subTopics.choices[0].message.content);
-  return subTopics.choices[0].message.content;
+  const message = JSON.parse(subTopics.choices[0].message.content);
+  return message;
 }
