@@ -27,13 +27,13 @@ export default async function storeInDB(topic, subtopics) {
     console.log(week, year);
     await Promise.all(
       subtopics.map(async (subtopic) => {
+        console.log("1");
         const questions = await generateQuestion(subtopic);
         const storedSubtopic = await Subtopics.create({
           name: subtopic,
           questions: questions,
           expiresAt: year,
         });
-        console.log(storedSubtopic);
       })
     );
     const allSubTopics = await Subtopics.findAll();
@@ -43,6 +43,7 @@ export default async function storeInDB(topic, subtopics) {
       prevSubTopics: null,
       expiresAt: null,
     });
+    console.log("this is where im looking at");
     console.log(storedTopic);
     console.log("Connection has been established successfully.");
   } catch (error) {
