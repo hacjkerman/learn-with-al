@@ -1,10 +1,10 @@
-export default async function getTopics() {
+export default function getTopics() {
   // GET PREVIOUS QUESTIONS FOR GIVEN TOPIC IN DB
   const topics = [
     // PSYCHOLOGY COULD BE A SITUATION TOPIC
     "Psychology",
     // PHILOSOPHY COULD BE A SITUATION TOPIC
-    // "Philosophy",
+    "Philosophy",
     // "Money",
     // // CODING COULD BE A SITUATION TOPIC
     // "Coding",

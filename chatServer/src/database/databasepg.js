@@ -7,7 +7,7 @@ import { initialiseSubtopicsModel } from "./initSubTopic.js";
 import generateQuestion from "../questions/generateQuestion.js";
 
 // Option 3: Passing parameters separately (other dialects)
-const sequelize = new Sequelize("docker-pg", "postgres", "postgres", {
+const sequelize = new Sequelize("postgres", "postgres", "postgres", {
   host: "db",
   dialect:
     "postgres" /* one of 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */,
