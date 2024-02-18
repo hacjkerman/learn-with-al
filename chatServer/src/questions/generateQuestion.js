@@ -5,7 +5,7 @@ import getPrevious from "./getPreviousQuestions.js";
 const key = process.env.API_KEY;
 const openai = new OpenAI({ apiKey: key });
 
-export default async function generateQuestion(topic) {
+export default async function generateQuestion(topic, subtopic) {
   // const prevQuestions = await getPrevious(topic);
   // const completion = await openai.chat.completions.create({
   //   messages: [

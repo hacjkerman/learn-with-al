@@ -4,7 +4,7 @@ export default function getTopics() {
     // PSYCHOLOGY COULD BE A SITUATION TOPIC
     "Psychology",
     // PHILOSOPHY COULD BE A SITUATION TOPIC
-    "Philosophy",
+    // "Philosophy",
     // "Money",
     // // CODING COULD BE A SITUATION TOPIC
     // "Coding",

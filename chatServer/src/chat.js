@@ -5,7 +5,7 @@ import gptConnect from "./gptConnect.js";
 const openai = gptConnect();
 
 export default async function chat() {
-  const topics = await getTopics();
+  const topics = getTopics();
   const questions = await Promise.all(
     topics.map(async (topic) => {
       const prevQuestions = await getPrevious(topic);
@@ -29,5 +29,5 @@ export default async function chat() {
     })
   );
   // STORE INTO DATABASE HERE
-  return questions;
+  return JSON.parse(questions);
 }

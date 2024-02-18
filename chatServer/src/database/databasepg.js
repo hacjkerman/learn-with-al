@@ -21,12 +21,16 @@ export default async function storeInDB(topic, subtopics) {
         const questions = await generateQuestion(subtopic);
         await Subtopics.create({
           name: subtopic,
+          topic: topic,
           questions: questions,
           expiresAt: year,
         });
       })
     );
-    const allSubTopics = await Subtopics.findAll();
+    const allSubTopics = await Subtopics.findAll({
+      attributes: ["name"],
+    });
+    console.log(allSubTopics);
     await Topic.create({
       name: topic,
       subTopics: allSubTopics,

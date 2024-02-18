@@ -7,7 +7,7 @@ import generateQuestion from "./src/questions/generateQuestion.js";
 import genSubTopics from "./src/subtopics/genSubTopics.js";
 import storeInDB from "./src/database/databasepg.js";
 import getTopics from "./src/topics/getTopics.js";
-import getTopics from "./src/database/getTopics.js";
+import getSubTopics from "./src/database/getSubTopics.js";
 
 const app = express();
 

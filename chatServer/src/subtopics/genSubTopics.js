@@ -3,7 +3,7 @@ import gptConnect from "../gptConnect.js";
 
 const openai = gptConnect();
 
-export default async function getSubTopics(topic) {
+export default async function genSubTopics(topic) {
   const prevSubTopics = await getPrevSubTopics(topic);
   const subTopics = await openai.chat.completions.create({
     messages: [
@@ -16,12 +16,14 @@ export default async function getSubTopics(topic) {
           prevSubTopics +
           ", give me 7 new subtopics relating to " +
           topic +
-          " to help students in this topic learn more and understand concepts better. Please return the response in an array format in a JSON notation",
+          ' to help students in this topic learn more and understand concepts better. Please return the response as an array with the key of "subtopics" in a JSON object',
       },
     ],
     model: "gpt-3.5-turbo",
   });
   // STORE INTO DATABASE HERE
+  console.log(subTopics.choices[0].message.content);
   const message = JSON.parse(subTopics.choices[0].message.content);
-  return message;
+  console.log(message);
+  return message.subtopics;
 }

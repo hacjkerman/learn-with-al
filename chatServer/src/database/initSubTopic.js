@@ -6,6 +6,11 @@ export function initialiseSubtopicsModel(sequelize) {
       allowNull: false,
       validate: { notEmpty: true },
     },
+    topic: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      validate: { notEmpty: true },
+    },
     questions: {
       type: DataTypes.JSON,
       allowNull: false,
