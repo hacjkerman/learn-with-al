@@ -20,10 +20,9 @@ export default async function genSubTopics(topic) {
       },
     ],
     model: "gpt-3.5-turbo",
+    response_format: { type: "json_object" },
   });
   // STORE INTO DATABASE HERE
-  console.log(subTopics.choices[0].message.content);
   const message = JSON.parse(subTopics.choices[0].message.content);
-  console.log(message);
   return message.subtopics;
 }

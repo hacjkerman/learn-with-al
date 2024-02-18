@@ -1,11 +1,11 @@
-import { initialiseArchiveModel } from "./initArchive.js";
+// import { initialiseArchiveModel } from "./initArchive.js";
 import { initialiseTopicModel } from "./initTopic.js";
 import { initialiseSubtopicsModel } from "./initSubTopic.js";
 import generateQuestion from "../questions/generateQuestion.js";
 import { sequelize } from "./pginit.js";
 
 // const User = initialiseUserModel(sequelize, DataTypes);
-const Archived = initialiseArchiveModel(sequelize);
+// const Archived = initialiseArchiveModel(sequelize);
 const Topic = initialiseTopicModel(sequelize);
 const Subtopics = initialiseSubtopicsModel(sequelize);
 export default async function storeInDB(topic, subtopics) {
@@ -18,7 +18,7 @@ export default async function storeInDB(topic, subtopics) {
     console.log(week, year);
     await Promise.all(
       subtopics.map(async (subtopic) => {
-        const questions = await generateQuestion(subtopic);
+        const questions = await generateQuestion(topic, subtopic);
         await Subtopics.create({
           name: subtopic,
           topic: topic,
@@ -27,13 +27,10 @@ export default async function storeInDB(topic, subtopics) {
         });
       })
     );
-    const allSubTopics = await Subtopics.findAll({
-      attributes: ["name"],
-    });
-    console.log(allSubTopics);
+
     await Topic.create({
       name: topic,
-      subTopics: allSubTopics,
+      subTopics: subtopics,
       prevSubTopics: null,
       expiresAt: null,
     });

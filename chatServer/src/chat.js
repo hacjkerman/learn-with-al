@@ -13,6 +13,7 @@ export default async function chat() {
         messages: [
           {
             role: "system",
+            response_format: { type: "json_object" },
             content:
               "You are the world's most knowledgable individual on the topic: " +
               topic +
