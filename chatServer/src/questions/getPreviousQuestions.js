@@ -1,5 +1,5 @@
 import { sequelize } from "../database/pginit.js";
-import { initialiseSubtopicsModel } from "../database/initSubTopic.js";
+import { initialiseSubtopicsModel } from "../database/initialise/initSubTopic.js";
 import { Op } from "sequelize";
 export default async function getPreviousQuestions(topic, subtopic) {
   const Subtopic = initialiseSubtopicsModel(sequelize);

@@ -49,9 +49,9 @@ app.post("/generateQuestions", async (req, res) => {
   res.json(chatMessage);
 });
 
-app.get("/db", async (req, res) => {
-  console.log("hello");
-  const db = await storeInDB("psychology", ["forensic psychology"]);
+app.post("/db", async (req, res) => {
+  const { topic, subtopics } = req.body;
+  const db = await storeInDB(topic, subtopics);
   res.json(db);
 });
 

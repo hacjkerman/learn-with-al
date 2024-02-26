@@ -1,5 +1,5 @@
 import { sequelize } from "../database/pginit.js";
-import { initialiseTopicModel } from "../database/initTopic.js";
+import { initialiseTopicModel } from "../database/initialise/initTopic.js";
 export default async function getPrevSubTopics(topic) {
   // QUERY GET PREVIOUS QUESTIONS FOR GIVEN TOPIC IN DB
   const Topic = initialiseTopicModel(sequelize);

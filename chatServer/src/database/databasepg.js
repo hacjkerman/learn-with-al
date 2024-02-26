@@ -1,6 +1,6 @@
 // import { initialiseArchiveModel } from "./initArchive.js";
-import { initialiseTopicModel } from "./initTopic.js";
-import { initialiseSubtopicsModel } from "./initSubTopic.js";
+import { initialiseTopicModel } from "./initialise/initTopic.js";
+import { initialiseSubtopicsModel } from "./initialise/initSubTopic.js";
 import generateQuestion from "../questions/generateQuestion.js";
 import { sequelize } from "./pginit.js";
 
