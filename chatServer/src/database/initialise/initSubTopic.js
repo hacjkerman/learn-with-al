@@ -16,6 +16,10 @@ export function initialiseSubtopicsModel(sequelize) {
       allowNull: false,
       validate: { notEmpty: true },
     },
+    prevQuestions: {
+      type: DataTypes.JSON,
+      allowNull: true,
+    },
     expiresAt: {
       type: DataTypes.DATE,
       allowNull: false,

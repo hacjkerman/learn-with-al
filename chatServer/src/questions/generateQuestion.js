@@ -7,23 +7,23 @@ const openai = new OpenAI({ apiKey: key });
 
 export default async function generateQuestion(topic, subtopic) {
   const prevQuestions = await getPreviousQuestions(topic, subtopic);
-  const completion = await openai.chat.completions.create({
-    messages: [
-      {
-        role: "system",
+  // const completion = await openai.chat.completions.create({
+  //   messages: [
+  //     {
+  //       role: "system",
 
-        content:
-          "You are the world's most knowledgable individual on the topic: " +
-          subtopic +
-          ". Excluding these questions: " +
-          prevQuestions +
-          ", give me 1 question and answer of the following categories: beginner, intermediate, and advanced to help students in this topic learn more and understand concepts better. Please return the response in JSON notation.",
-      },
-    ],
-    model: "gpt-3.5-turbo",
-    response_format: { type: "json_object" },
-  });
-  const message = JSON.parse(completion.choices[0].message.content);
+  //       content:
+  //         "You are the world's most knowledgable individual on the topic: " +
+  //         subtopic +
+  //         ". Excluding these questions: " +
+  //         prevQuestions +
+  //         ", give me 1 question and answer of the following categories: beginner, intermediate, and advanced to help students in this topic learn more and understand concepts better. Please return the response in JSON notation.",
+  //     },
+  //   ],
+  //   model: "gpt-3.5-turbo",
+  //   response_format: { type: "json_object" },
+  // });
+  // const message = JSON.parse(completion.choices[0].message.content);
   return {
     beginner: {
       question: "What is forensic psychology?",
