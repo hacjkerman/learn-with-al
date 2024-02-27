@@ -1,12 +1,15 @@
-import { initialiseArchiveModel } from "./initialise/initArchive.js";
+import { initialiseArchiveQuestionModel } from "./initialise/initArchiveQuestion.js";
+import { initialiseArchiveSubtopicModel } from "./initialise/initArchiveSubTopic.js";
 import { initialiseTopicModel } from "./initialise/initTopic.js";
 import { initialiseSubtopicsModel } from "./initialise/initSubTopic.js";
 import generateQuestion from "../questions/generateQuestion.js";
 import { sequelize } from "./pginit.js";
 import subTopicInTopic from "./subTopicInTopic.js";
+import topicInTopic from "./topicInTopic.js";
 
 // const User = initialiseUserModel(sequelize, DataTypes);
-const ArchivedQuestions = initialiseArchiveModel(sequelize);
+const ArchivedQuestions = initialiseArchiveQuestionModel(sequelize);
+const ArchivedSubTopics = initialiseArchiveSubtopicModel(sequelize);
 const Topic = initialiseTopicModel(sequelize);
 const Subtopics = initialiseSubtopicsModel(sequelize);
 export default async function storeInDB(topic, subtopics) {
@@ -20,9 +23,9 @@ export default async function storeInDB(topic, subtopics) {
     await Promise.all(
       subtopics.map(async (subtopic) => {
         const questions = await generateQuestion(topic, subtopic);
-        const prev = await subTopicInTopic(topic, subtopic);
+        const prevSub = await subTopicInTopic(topic, subtopic);
         // NEW SUBTOPIC
-        if (prev.length === 0) {
+        if (!prevSub) {
           await Subtopics.create({
             name: subtopic,
             topic: topic,
@@ -34,27 +37,28 @@ export default async function storeInDB(topic, subtopics) {
           // UPDATING OLD SUBTOPIC WITH NEW SUBTOPIC QUESTIONS
           // IF PREV QUESTIONS ALREADY EXIST
           // ARCHIVES PREV QUESTIONS BEFORE UPDATING
-          const prevData = prev[0].dataValues;
-          if (prevData.prevQuestions !== null) {
+          const subTopData = prevSub[0].dataValues;
+          if (subTopData.prevQuestions !== null) {
             await ArchivedQuestions.create({
-              subTopic: prevData.name,
-              questions: prevData.prevQuestions,
-              expiredAt: prevData.expiresAt,
+              subTopic: subTopData.name,
+              questions: subTopData.prevQuestions,
+              expiredAt: subTopData.expiresAt,
             });
-          } else {
-            // UPDATES NEW PREVQUESTIONS
-            await Subtopics.update(
-              { prevQuestions: prevData.questions },
-              {
-                where: {
-                  name: subtopic,
-                },
-              }
-            );
           }
+          // } else {
+          //   // UPDATES NEW PREVQUESTIONS
+          //   await Subtopics.update(
+          //     { prevQuestions: subTopData.questions },
+          //     {
+          //       where: {
+          //         name: subtopic,
+          //       },
+          //     }
+          //   );
+          // }
           // UPDATES OLD QUESTIONS WITH NEW QUESTIONS
           await Subtopics.update(
-            { questions: questions },
+            { questions: questions, prevQuestions: subTopData.questions },
             {
               where: {
                 name: subtopic,
@@ -64,13 +68,41 @@ export default async function storeInDB(topic, subtopics) {
         }
       })
     );
+    const prevTopic = await topicInTopic(topic);
+    if (!prevTopic) {
+      await Topic.create({
+        name: topic,
+        subTopics: subtopics,
+        prevSubTopics: null,
+        expiresAt: year,
+      });
+    } else {
+      const topicData = prevTopic[0].dataValues;
+      if (topicData.prevSubTopics !== null) {
+        await ArchivedSubTopics.create({
+          topic: topicData.name,
+          subTopics: topicData.prevSubTopics,
+          expiredAt: topicData.expiresAt,
+        });
+      }
+      // } else {
+      //   await Topic.update(
+      //     { prevSubTopics: topicData.subTopics },
+      //     {
+      //       where: {
+      //         name: topic,
+      //       },
+      //     }
+      //   );
+      // }
+      await Topic.update(
+        { subTopics: subtopics, prevSubTopics: topicData.subTopics },
+        {
+          where: { name: topic },
+        }
+      );
+    }
 
-    await Topic.create({
-      name: topic,
-      subTopics: subtopics,
-      prevSubTopics: null,
-      expiresAt: null,
-    });
     console.log("Connection has been established successfully.");
   } catch (error) {
     console.error("Unable to connect to the database:", error);

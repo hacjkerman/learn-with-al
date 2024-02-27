@@ -1,12 +1,12 @@
 import { DataTypes } from "sequelize";
-export function initialiseArchiveModel(sequelize) {
-  const ArchivedQuestions = sequelize.define("archivedQuestions", {
-    subTopic: {
+export function initialiseArchiveSubtopicModel(sequelize) {
+  const ArchivedSubTopic = sequelize.define("archivedSubTopic", {
+    topic: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: { notEmpty: true },
     },
-    questions: {
+    subTopics: {
       type: DataTypes.JSON,
       allowNull: false,
       validate: { notEmpty: true },
@@ -18,9 +18,9 @@ export function initialiseArchiveModel(sequelize) {
     },
   });
 
-  ArchivedQuestions.sync().then(() => {
+  ArchivedSubTopic.sync().then(() => {
     console.log("Archived Questions Model synced");
   });
 
-  return ArchivedQuestions;
+  return ArchivedSubTopic;
 }
