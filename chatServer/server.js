@@ -7,7 +7,8 @@ import generateQuestion from "./src/questions/generateQuestion.js";
 import genSubTopics from "./src/subtopics/genSubTopics.js";
 import storeInDB from "./src/database/databasepg.js";
 import getTopics from "./src/topics/getTopics.js";
-import getSubTopics from "./src/database/getSubTopics.js";
+import getDBSubTopics from "./src/database/subtopics/getSubTopics.js";
+import getDBTopics from "./src/database/topics/getTopics.js";
 
 const app = express();
 
@@ -57,13 +58,13 @@ app.post("/db", async (req, res) => {
 
 app.get("/topics", async (req, res) => {
   console.log("hello");
-  const db = await getTopics();
+  const db = await getDBTopics();
   res.json(db);
 });
 
 app.get("/subtopics", async (req, res) => {
   console.log("hello");
-  const db = await getSubTopics();
+  const db = await getDBSubTopics();
   res.json(db);
 });
 

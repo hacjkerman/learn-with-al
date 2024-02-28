@@ -1,4 +1,4 @@
-import { sequelize } from "../database/pginit.js";
+import { sequelize } from "../database/initialise/pginit.js";
 import { initialiseSubtopicsModel } from "../database/initialise/initSubTopic.js";
 import { Op } from "sequelize";
 export default async function getPreviousQuestions(topic, subtopic) {

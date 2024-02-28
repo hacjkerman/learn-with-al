@@ -26,7 +26,7 @@ export default async function generateQuestion(topic, subtopic) {
   // const message = JSON.parse(completion.choices[0].message.content);
   return {
     beginner: {
-      question: "What is forensic psychology?",
+      question: "1 is forensic psychology?",
       answer:
         "Forensic psychology is the application of psychology to the field of law and justice. It involves using psychological principles, theories, and research to understand the behavior of individuals involved in legal cases.",
     },

@@ -25,5 +25,5 @@ export default async function genSubTopics(topic) {
   // // STORE INTO DATABASE HERE
   // const message = JSON.parse(subTopics.choices[0].message.content);
   // return message.subtopics;
-  return ["Cognitive Psychology"];
+  return ["AHHAHA Psychology"];
 }
