@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import Navbar from "./components/Navbar/Navbar";
+import Home from "./components/Home/Home";
+import Topic from "./components/Topic/Topic";
+import {
+  BrowserRouter,
+  Link,
+  Route,
+  Routes,
+  useParams,
+} from "react-router-dom";
 
+const TopicPage = () => {
+  const params = useParams();
+  return <Topic topic={params.topic} />;
+};
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/topic/:topic" Component={TopicPage} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
