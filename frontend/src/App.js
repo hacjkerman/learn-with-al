@@ -1,6 +1,6 @@
 import Navbar from "./components/Navbar/Navbar";
-import Home from "./components/Home/Home";
-import Topic from "./components/Topic/Topic";
+import Home from "./pages/Home/Home";
+import Topic from "./pages/Topic/Topic";
 import {
   BrowserRouter,
   Link,
