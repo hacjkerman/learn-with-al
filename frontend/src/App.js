@@ -21,7 +21,7 @@ const SubTopicPage = () => {
 };
 function App() {
   return (
-    <div className="">
+    <div className="font-sans">
       <BrowserRouter>
         <Navbar />
         <Routes>

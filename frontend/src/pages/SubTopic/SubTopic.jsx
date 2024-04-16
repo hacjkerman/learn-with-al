@@ -1,5 +1,5 @@
 import React from "react";
-import QuestionBox from "../../sections/QuestionBox/QuestionBox";
+import QuestionsBox from "../../sections/QuestionBoxs/QuestionsBox";
 
 function SubTopic(props) {
   const subtopic = props.subtopic;
@@ -7,7 +7,7 @@ function SubTopic(props) {
   return (
     <div>
       <div>{subtopic}</div>
-      <QuestionBox question={["Hello", "Hi"]}></QuestionBox>
+      <QuestionsBox question={["Hello", "Hi"]}></QuestionsBox>
     </div>
   );
 }
