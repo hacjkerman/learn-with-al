@@ -2,7 +2,6 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import SubTopicBox from "../../sections/SubTopicBox/SubTopicBox";
 import TopQuestions from "../../sections/TopQuestions/TopQuestions";
-import Podium from "../../sections/TopQuestions/Podium";
 import Loading from "../Loading/Loading";
 function Topic(props) {
   const topic = props.topic;
@@ -12,8 +11,6 @@ function Topic(props) {
       <div className="flex flex-col justify-center">
         <div class="flex-grow border-t border-gray-400"></div>
         <SubTopicBox subtopic={"Cognitive Psychology"}></SubTopicBox>
-        <div class="flex-grow border-t border-gray-400"></div>
-        <Podium />
         <div class="flex-grow border-t border-gray-400"></div>
       </div>
       <Outlet />

@@ -1,5 +1,6 @@
 import React from "react";
 import QuestionsBox from "../../sections/QuestionBoxs/QuestionsBox";
+import Podium from "../../sections/TopQuestions/Podium";
 
 function SubTopic(props) {
   const subtopic = props.subtopic;
@@ -7,7 +8,8 @@ function SubTopic(props) {
   return (
     <div>
       <div>{subtopic}</div>
-      <QuestionsBox question={["Hello", "Hi"]}></QuestionsBox>
+      <Podium />
+      <QuestionsBox />
     </div>
   );
 }
