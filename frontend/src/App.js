@@ -2,6 +2,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/Home";
 import SubTopic from "./pages/SubTopic/SubTopic";
 import Topic from "./pages/Topic/Topic";
+import Footer from "./sections/Footer/Footer";
 import {
   BrowserRouter,
   Link,
@@ -31,6 +32,7 @@ function App() {
             <Route path=":subtopic" Component={SubTopicPage} />
           </Route>
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );

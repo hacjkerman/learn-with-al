@@ -17,7 +17,7 @@ export default async function generateQuestion(topic, subtopic) {
   //         subtopic +
   //         ". Excluding these questions: " +
   //         prevQuestions +
-  //         ", give me 1 question and answer of the following categories: beginner, intermediate, and advanced to help students in this topic learn more and understand concepts better. Please return the response in JSON notation.",
+  //         ", give me 1 generic and 1 interview question and answer for the following categories: beginner, intermediate, and advanced to help students in this topic learn more and understand concepts better. Please return the response in JSON notation.",
   //     },
   //   ],
   //   model: "gpt-3.5-turbo",
