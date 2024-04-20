@@ -25,7 +25,7 @@ function QuestionsBox(props) {
   return (
     <motion.div
       ref={carousel}
-      className="container flex gap-4 overflow-hidden hover:cursor-grab active:cursor-grabbing py-8 mx-0 max-w-full"
+      className="container flex gap-4 overflow-hidden  py-8 mx-0 max-w-full"
     >
       <motion.div
         drag="x"
@@ -34,7 +34,7 @@ function QuestionsBox(props) {
           opacity: { duration: 0.2 },
         }}
         dragConstraints={{ right: 0, left: -width }}
-        className="flex gap-4 "
+        className="flex gap-4 hover:cursor-grab active:cursor-grabbing"
       >
         <QuestionBox></QuestionBox>
         <QuestionBox></QuestionBox>

@@ -1,5 +1,6 @@
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/Home";
+import QuestionPage from "./pages/Question/QuestionPage";
 import SubTopic from "./pages/SubTopic/SubTopic";
 import Topic from "./pages/Topic/Topic";
 import Footer from "./sections/Footer/Footer";
@@ -20,6 +21,7 @@ const SubTopicPage = () => {
   const params = useParams();
   return <SubTopic subtopic={params.subtopic} />;
 };
+
 function App() {
   return (
     <div className="font-sans">
@@ -29,7 +31,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/:topic">
             <Route path="" Component={TopicPage} />
-            <Route path=":subtopic" Component={SubTopicPage} />
+            <Route path=":subtopic">
+              <Route path="" Component={SubTopicPage} />
+              <Route path=":question" Component={QuestionPage} />
+            </Route>
           </Route>
         </Routes>
         <Footer />

@@ -4,6 +4,7 @@ import Podium from "../../sections/TopQuestions/Podium";
 
 function SubTopic(props) {
   const subtopic = props.subtopic;
+  // CHECK TO SEE IF SUBTOPIC EXISTS OR NOT
   const items = ["General Questions", "Interview Questions", "Archived"];
   //   FETCH QUESTIONS FOR SUBTOPIC HERE
   return (

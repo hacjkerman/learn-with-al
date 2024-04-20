@@ -19,9 +19,9 @@ function Navbar() {
     navigate("/");
   };
   return (
-    <div className="flex justify-start xs:text-md sm:text-lg md:text-xl space-x-8 w-full bg-white shadow-lg items-center">
+    <div className="flex justify-start xs:text-md sm:text-lg md:text-xl sm:space-x-0 xs:space-x-2 md:space-x-4 lg:space-x-8 w-full bg-white shadow-lg items-center">
       <img
-        className="w-8 h-8 ml-8 hover:cursor-pointer"
+        className="w-8 h-8 sm:ml-2 ml-8 hover:cursor-pointer"
         src={GEC}
         alt="logo"
         onClick={home}
